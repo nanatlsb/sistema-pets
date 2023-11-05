@@ -2,7 +2,7 @@
 if (!empty($_POST)) {
     include_once 'conexao.php';
 
-    // Resto do código
+
     $nome = $_POST['nome'];
     $nome_animal = $_POST['nome_animal']; 
     $cpf = $_POST['cpf'];
@@ -31,6 +31,7 @@ if (!empty($_POST)) {
             alert('Solicitado com sucesso!');
           </script>";
 } else {
-    echo "Usuário não cadastrado";
+    echo "Não foi possível solicitar adoção";
 }
+
 ?>

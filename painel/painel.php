@@ -17,18 +17,6 @@ try {
     echo 'ERROR: ' . $e->getMessage();
 }
 
-function teste1($id)
-{
-    try {
-        include('../php/conexao.php');
-        $stmt = $conexao->prepare('SELECT * FROM tb_adm WHERE id_adm =' . $id);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_GROUP | PDO::FETCH_ASSOC);
-        print_r($result[$id]);
-    } catch (PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -93,6 +81,13 @@ function teste1($id)
                             <a href="cadastrar.html" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Cadastrar usuario
+                                </small>
+
+                                <div class="collapse show" id="menu-usuario">
+                        <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
+                            <a href="solicitacao.php" class="submenu-link link-light text-decoration-none rounded p-2">
+                                <small class="d-flex justify-content-between align-items-center">
+                                  Solicitação de adoção
                                 </small>
 
                                 <div class="collapse show" id="menu-usuario">
@@ -204,8 +199,9 @@ function teste1($id)
                     </thead>
                     <tbody>
 
-                        <button onclick="teste(2)"></button>
+                        
                         <?php
+                        
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             echo '<tr>';
                             echo '<td>' . $row['nm_usuario'] . '</td>';
@@ -224,7 +220,7 @@ function teste1($id)
                                 </svg>
                             </a>
 
-                            <a onclick="" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Deletar">
+                            <a href="../php/delete_user.php" onclick="" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Deletar">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                     <path fill="#FFF" d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
                                     <path fill="#FFF" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
